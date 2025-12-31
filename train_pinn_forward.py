@@ -501,6 +501,7 @@ def train_model(model, data, r_ini, p_ini, config, device, use_adaptive_lambda=F
         if config.USE_STAGE_WEIGHTS:
             progress = i / max(n_epochs - 1, 1)
             w_ini, w_pde, w_bc = get_stage_weights(progress, hp)
+            lamb = [w_ini, w_pde, w_bc]
             # If BC is disabled, force w_bc=0
             if not use_bc:
                 w_bc = 0.0
@@ -835,3 +836,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
